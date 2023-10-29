@@ -15,16 +15,54 @@
   </div>
   <script>
     window.$docsify = {
+      plugins: [
+        
+        <!-- write own custom plugin -->
+        function editButton(hook, vm) {
+
+          // call the hook
+          hook.beforeEach(function (html) {
+           
+            var url = "https://github.com/officialrajdeepsingh/docsifyjs/edit/master/" + vm.route.file;
+            
+              // basic route fix 
+            let tempFile = url.replace("docsifyjs/README.md", "README.md",)
+              ? url.replace("docsifyjs/README.md", "README.md")
+              : url;
+
+            // Add Edit Button
+            var editHtml = "[📝 EDIT DOCUMENT](" + url + ")\n";
+
+            // Add edit button on top of file
+            return editHtml + html + "\n----\n" + "Last modified " + editHtml;
+          });
+        },
+        ],
+
+
+        latex: {
+          inlineMath   : [['$', '$'], ['\\(', '\\)']], // default
+          displayMath  : [['$$', '$$']],               // default
+        }
       name: 'Documentation',
       repo: 'https://github.com/williebonavente/CodeTest',
       maxLevel: 2,
       themeColor: '#2F51B5',
       loadSidebar: true, 
       loadNavbar: true, 
-
+      <!-- Enable Coverpage -->
+      coverpage: true, 
+      
     }
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <!-- Docsify v4 -->
+<script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+<!-- LaTeX display engine -->
+<script src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!--  docsify-latex plugin -->
+<script src="//cdn.jsdelivr.net/npm/docsify-latex@0"></script>
 </body>
 </html>
