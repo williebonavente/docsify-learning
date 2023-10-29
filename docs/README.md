@@ -4,7 +4,7 @@
 
 ## Printing Hello World in Python
 
-``` test
+``` display hello world
 print("Hello, World) 
 ```
 
